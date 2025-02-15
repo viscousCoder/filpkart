@@ -1,0 +1,52 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.css-1abc02a {
+  position: absolute;
+  height: 100%;
+  background-color: transparent;
+  z-index: 1;
+  top: -36px !important;
+  right: 0;
+}
+
+.css-hn784z {
+  position: absolute;
+  height: 100%;
+  background-color: transparent;
+  z-index: 1;
+  top: -36px !important;
+  left: 0;
+}
+
+.css-1ssbn0c {
+  height: 0px !important;
+}
+
+.css-c2x50n-MuiFormControlLabel-root .MuiFormControlLabel-label {
+  width: 100%;
+}
+.css-cokf1l-MuiListItemIcon-root {
+  min-width: 32px !important;
+}
+
+@media (min-width: 1200px) {
+  .css-93s74j-MuiContainer-root {
+    max-width: 1700px !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .css-5c1adp-MuiContainer-root {
+    max-width: 1700px !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .css-1bm2fm6-MuiContainer-root {
+    max-width: 1700px !important;
+  }
+}
