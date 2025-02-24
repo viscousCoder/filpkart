@@ -27,6 +27,7 @@ import NotFound from "./Pages/NotFound/NotFound.tsx";
 import ProductForm from "./component/Create_Product/ProductForm.tsx";
 import About from "./Pages/AboutUsPage/AboutUs.tsx";
 import ConatctPage from "./Pages/ContactUsPage.tsx/ConatctPage.tsx";
+import OrderSuccess from "./Pages/OrderSuccess/OrderSuccess.tsx";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -97,6 +98,10 @@ const App = () => {
               element: <Address />,
             },
           ],
+        },
+        {
+          path: "/order/success",
+          element: <OrderSuccess />,
         },
         {
           path: "/search",

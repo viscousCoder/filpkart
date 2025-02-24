@@ -278,6 +278,11 @@ export const UPDATE_ORDER = gql`
   }
 `;
 
+export const SEND_MESSAGE = gql`
+  mutation SendMessage($name: String!, $email: String!, $message: String!) {
+    sendMessage(name: $name, email: $email, message: $message)
+  }
+`;
 // export const UPDATE_ORDER_STATUS = gql`
 //   mutation UpdateOrderStatus($orderId: ID!, $status: OrderStatus!) {
 //     updateOrderStatus(orderId: $orderId, status: $status) {

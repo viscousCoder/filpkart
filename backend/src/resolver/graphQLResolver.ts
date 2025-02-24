@@ -20,6 +20,13 @@ import {
 } from "../getData/get_user";
 import { generateToken } from "../middleware/auth";
 import { OrderStatus } from "../entities/UserOrder";
+import sgMail from "@sendgrid/mail";
+// const sgMail = require('@sendgrid/mail');
+import dotenv from "dotenv";
+
+dotenv.config();
+
+sgMail.setApiKey(process.env.SENDGRID_API_KEY as string);
 
 interface admin {
   id: string;
@@ -510,6 +517,32 @@ export const graphQLResolver = {
         return data;
       } catch (error) {
         throw new Error("Failed to update order. Please try again.");
+      }
+    },
+
+    /**
+     * @function send email
+     */
+    sendMessage: async (
+      _: any,
+      { name, email, message }: { name: string; email: string; message: string }
+    ) => {
+      const msg = {
+        to: "celistialsys@gmail.com", // Admin's email
+        from: "amanbisht1010@gmail.com",
+        subject: "New Message from Contact Form",
+        text: `You have a new message from ${name} (${email}):\n\n${message}`,
+        html: `<strong>You have a new message from ${name} (${email}):</strong><br><p>${message}</p>`,
+      };
+
+      try {
+        // Send email via SendGrid
+        console.log(msg);
+        await sgMail.send(msg);
+        return "Message sent successfully!";
+      } catch (error) {
+        console.error("Error sending email:", error);
+        return "Failed to send message.";
       }
     },
   },

@@ -42,7 +42,7 @@ interface AccountState {
 
 const Component = styled(DialogContent)`
   height: 70vh;
-  width: 90vh;
+  width: 100%;
   padding: 0;
   padding-top: 0;
 `;
@@ -82,7 +82,6 @@ const Wrapper = styled(Box)`
   padding: 25px 35px;
   display: flex;
   flex: 1;
-  overflow: auto;
   flex-direction: column;
   & > div,
   & > button,
@@ -272,15 +271,25 @@ const RegisterDialouge: React.FC<LoginProps> = ({
         <CloseIcon />
       </IconButton>
       <Component>
-        <Box style={{ display: "flex", height: "100%" }}>
-          <Image>
+        <Box
+          sx={{
+            display: "flex",
+            height: "100%",
+            flexDirection: { xs: "column", md: "row" },
+          }}
+        >
+          <Image sx={{ width: { xs: "100%", md: "40%" } }}>
             <Typography variant="h5">{account.heading}</Typography>
             <Typography style={{ marginTop: 20 }}>
               {account.subHeading}
             </Typography>
           </Image>
           {account.view === "login" ? (
-            <Wrapper>
+            <Wrapper
+              sx={{
+                display: { sx: "block", md: "flex" },
+              }}
+            >
               <TextField
                 variant="standard"
                 onChange={onValueChange}

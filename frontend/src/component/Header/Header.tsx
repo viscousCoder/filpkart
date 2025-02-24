@@ -106,33 +106,34 @@ const Header: React.FC = () => {
       <AppBar position="static" sx={{ bgcolor: "#2874F0", px: 2 }}>
         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
           {/* Left: Logo */}
-          <Box display="flex" alignItems="center">
-            <Typography
-              variant="h6"
-              sx={{
-                fontWeight: "bold",
-                fontStyle: "italic",
-                color: "white",
-                mr: 1,
-                cursor: "pointer",
-              }}
-              onClick={handleHome}
-            >
-              Flipkart
-            </Typography>
-            <Typography variant="caption" sx={{ color: "#FFC220" }}>
-              Explore{" "}
-              <Box component="span" sx={{ fontWeight: "bold" }}>
-                Plus
-              </Box>{" "}
-              ✨
-            </Typography>
+          <Box display={"flex"} flexDirection={"row"} width={"90%"}>
+            <Box display="flex" alignItems="center">
+              <Typography
+                variant="h6"
+                sx={{
+                  fontWeight: "bold",
+                  fontStyle: "italic",
+                  color: "white",
+                  mr: 1,
+                  cursor: "pointer",
+                }}
+                onClick={handleHome}
+              >
+                Flipkart
+              </Typography>
+              <Typography variant="caption" sx={{ color: "#FFC220" }}>
+                Explore{" "}
+                <Box component="span" sx={{ fontWeight: "bold" }}>
+                  Plus
+                </Box>{" "}
+                ✨
+              </Typography>
+            </Box>
+
+            {/* Search Bar */}
+
+            <SearchBar />
           </Box>
-
-          {/* Search Bar */}
-
-          <SearchBar />
-
           {/* Right Section (Hidden on Mobile) */}
           <Box
             sx={{

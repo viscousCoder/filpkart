@@ -29,6 +29,7 @@ const Payment: React.FC<Props> = ({ onContinue }) => {
     setPaymentMethod(event.target.value);
   };
 
+  // console.log(orders, "Aman order");
   const handleContinue = () => {
     if (direct === "false") {
       const orderId = orders?.map((item) => item.id);
@@ -45,7 +46,8 @@ const Payment: React.FC<Props> = ({ onContinue }) => {
           })
         );
     }
-    navigate("/");
+    // dispatch(addOrder)
+    navigate("/order/success");
     onContinue();
   };
 

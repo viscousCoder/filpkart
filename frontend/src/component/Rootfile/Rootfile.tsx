@@ -9,7 +9,7 @@ const Rootfile = () => {
     <Box sx={{ m: 0, p: 0, backgroundColor: "#f1f2f4" }}>
       <CssBaseline />
       <Header />
-      <Box height={30} />
+      {/* <Box height={30} /> */}
       <Box sx={{ display: "flex", minHeight: "40rem" }}>
         <Outlet />
       </Box>

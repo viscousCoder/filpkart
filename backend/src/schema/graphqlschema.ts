@@ -176,6 +176,8 @@ type Mutation{
   # addOrder(userId: ID!, products: [OrderInput!]!): [UserOrder!]!
   updateOrder(orderId: ID, orderIds: [ID], quantity: Int, increase: Boolean, delete: Boolean, status: OrderStatus): [UserOrder!]!
 
+  #send email
+  sendMessage(name: String!, email: String!, message: String!): String
   
   
 }

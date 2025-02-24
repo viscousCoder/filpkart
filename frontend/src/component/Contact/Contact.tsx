@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
+import ContactForm from "./ContactForm";
 
 const ContactSection: React.FC = () => {
   return (
@@ -62,7 +63,7 @@ const ContactSection: React.FC = () => {
         </Grid>
 
         {/* Right Section - Contact Form */}
-        <Grid item xs={12} md={6}>
+        {/* <Grid item xs={12} md={6}>
           <Card sx={{ p: 3, bgcolor: "#f9f9f9" }}>
             <Typography variant="h6" fontWeight="bold" gutterBottom>
               Quick Contact Form
@@ -97,7 +98,8 @@ const ContactSection: React.FC = () => {
               </Button>
             </Box>
           </Card>
-        </Grid>
+        </Grid> */}
+        <ContactForm />
       </Grid>
     </Box>
   );
