@@ -28,7 +28,8 @@ async function getStarted() {
   // app.use(cors());
   app.use(
     cors({
-      origin: "http://localhost:5173",
+      // origin: "http://localhost:5173",
+      origin: "https://eccom001.netlify.app",
       credentials: true,
       methods: ["GET", "POST", "PUT", "DELETE"],
       allowedHeaders: [

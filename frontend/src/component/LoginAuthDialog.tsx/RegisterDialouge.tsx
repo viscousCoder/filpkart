@@ -165,6 +165,8 @@ const RegisterDialouge: React.FC<LoginProps> = ({
 
   useEffect(() => {
     setError({});
+    const token = localStorage.getItem("token");
+    if (token) setOpen(false);
   }, [login, signup]);
 
   const onValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {

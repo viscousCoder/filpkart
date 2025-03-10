@@ -15,7 +15,8 @@ import createUploadLink from "apollo-upload-client/createUploadLink.mjs";
 // });
 
 const link = createUploadLink({
-  uri: "http://localhost:1211/graphql",
+  // uri: "http://localhost:1211/graphql",
+  uri: "https://filpkart-gn4q.onrender.com/graphql",
   credentials: "include",
 });
 export const client = new ApolloClient({

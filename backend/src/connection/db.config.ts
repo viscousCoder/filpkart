@@ -16,44 +16,16 @@ const MYDBUSER = process.env.MYDBUSER;
  * @function to establish the db conection
  * @returns db response
  */
-// export async function getConnection() {
-//   const AppDataSource = new DataSource({
-//     type: MYDBTYPE,
-//     host: MYHOST,
-//     port: MYDBPORT,
-//     password: MYDBPASSWORD,
-//     database: MYDBNAME,
-//     username: MYDBUSER,
-//     // entities: ["src/entities/**/*{.ts,.js}"],
-//     entities: [path.join(__dirname, "/../entities/**/*.ts")],
-//     synchronize: true,
-//     logging: true,
-//   });
-//   if (!AppDataSource.isInitialized) {
-//     await AppDataSource.initialize();
-//   }
-//   return AppDataSource;
-// }
-
-/**new setup */
-const PGHOST = process.env.PGHOST;
-const PGDATABASE = process.env.PGDATABASE;
-const PGUSER = process.env.PGUSER;
-const PGPASSWORD = process.env.PGPASSWORD;
-
 export async function getConnection() {
   const AppDataSource = new DataSource({
     type: MYDBTYPE,
-    host: PGHOST,
+    host: MYHOST,
     port: MYDBPORT,
-    password: PGPASSWORD,
-    database: PGDATABASE,
-    username: PGUSER,
-    ssl: {
-      rejectUnauthorized: false, // Allow self-signed certificates
-    },
+    password: MYDBPASSWORD,
+    database: MYDBNAME,
+    username: MYDBUSER,
     // entities: ["src/entities/**/*{.ts,.js}"],
-    entities: [path.join(__dirname, "/../entities/**/*{.ts,.js}")],
+    entities: [path.join(__dirname, "/../entities/**/*.ts")],
     synchronize: true,
     logging: true,
   });
@@ -62,3 +34,31 @@ export async function getConnection() {
   }
   return AppDataSource;
 }
+
+/**new setup */
+// const PGHOST = process.env.PGHOST;
+// const PGDATABASE = process.env.PGDATABASE;
+// const PGUSER = process.env.PGUSER;
+// const PGPASSWORD = process.env.PGPASSWORD;
+
+// export async function getConnection() {
+//   const AppDataSource = new DataSource({
+//     type: MYDBTYPE,
+//     host: PGHOST,
+//     port: MYDBPORT,
+//     password: PGPASSWORD,
+//     database: PGDATABASE,
+//     username: PGUSER,
+//     ssl: {
+//       rejectUnauthorized: false, // Allow self-signed certificates
+//     },
+//     // entities: ["src/entities/**/*{.ts,.js}"],
+//     entities: [path.join(__dirname, "/../entities/**/*{.ts,.js}")],
+//     synchronize: true,
+//     logging: true,
+//   });
+//   if (!AppDataSource.isInitialized) {
+//     await AppDataSource.initialize();
+//   }
+//   return AppDataSource;
+// }
