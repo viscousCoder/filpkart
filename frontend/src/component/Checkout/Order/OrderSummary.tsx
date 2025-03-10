@@ -20,10 +20,11 @@ import {
   incrementQuantity,
   removeItem,
 } from "../../../store/orderSlice";
-import { Product } from "../../interfaceTypes/interfaceTypes";
+// import { Product } from "../../interfaceTypes/interfaceTypes";
+import ProductDetails from "../../ProductLanding/ProductDetails";
 
 interface CartItem {
-  product: Product;
+  product: ProductDetails;
   quantity: number;
   id: string;
   status: string;
@@ -34,8 +35,8 @@ interface Props {
 }
 
 interface Props {
-  cart: CartItem[];
-  setCart: (cart: CartItem[]) => void;
+  // cart: CartItem[];
+  // setCart: (cart: CartItem[]) => void;
   onContinue: () => void;
 }
 
@@ -49,7 +50,7 @@ const seller = [
   "Gupta",
 ];
 
-const OrderSummary: React.FC<Props> = ({ cart, setCart, onContinue }) => {
+const OrderSummary: React.FC<Props> = ({ onContinue }) => {
   const dispatch = useDispatch<AppDispatch>();
   const { orders } = useSelector((state: RootState) => state.orders);
   // const handleQuantityChange = (id: number, delta: number) => {
@@ -61,7 +62,7 @@ const OrderSummary: React.FC<Props> = ({ cart, setCart, onContinue }) => {
   //   console.log(updatedCart);
   //   setCart(updatedCart);
   // };
-  console.log(orders, "Thsi is irder");
+  // console.log(orders, "Thsi is irder", cart);
   const handleIncrement = (id: string) => {
     dispatch(incrementQuantity(id));
   };
@@ -70,7 +71,7 @@ const OrderSummary: React.FC<Props> = ({ cart, setCart, onContinue }) => {
   };
 
   const handleRemoveItem = (id: string) => {
-    setCart(cart.filter((item) => item.id.toString() !== id.toString()));
+    // setCart(cart.filter((item) => item.id.toString() !== id.toString()));
     dispatch(removeItem(id));
   };
 
@@ -121,7 +122,7 @@ const OrderSummary: React.FC<Props> = ({ cart, setCart, onContinue }) => {
                   <Typography variant="body2" color="text.secondary">
                     Delivery by{" "}
                     {deliveryData[Math.floor(Math.random() * 5) + 1]}|{" "}
-                    {item.product?.price > 1000 ? "Free" : "₹40"}
+                    {Number(item.product?.price) > 1000 ? "Free" : "₹40"}
                   </Typography>
                 </Box>
               </Box>
@@ -146,8 +147,12 @@ const OrderSummary: React.FC<Props> = ({ cart, setCart, onContinue }) => {
               <Typography variant="body2">
                 <s>₹{item?.product?.price}</s>{" "}
                 <span style={{ color: "green" }}>
-                  ₹{discount(item?.product?.price, item?.product?.discount)} (
-                  {item?.product?.discount}% Off)
+                  ₹
+                  {discount(
+                    Number(item?.product?.price),
+                    Number(item?.product?.discount)
+                  )}{" "}
+                  ({item?.product?.discount}% Off)
                 </span>
               </Typography>
 

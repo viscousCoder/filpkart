@@ -1,6 +1,6 @@
 import { Card, CardActionArea, CardMedia } from "@mui/material";
 
-const Banner = ({ image }) => {
+const Banner = ({ image }: { image: string }) => {
   return (
     <Card sx={{ maxWidth: 256, margin: "10px 5px", height: " 23rem " }}>
       <CardActionArea>

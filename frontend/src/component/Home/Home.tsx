@@ -1,11 +1,11 @@
-import { Box, Typography, Container, Grid } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
 import CategoryHeader from "./CategoryHeader";
 import ProductCarousel from "./CarouselProduct/ProductCarousel";
 import { JSX } from "react/jsx-runtime";
 import Banner from "./CarouselProduct/Banner";
 import DatBanner from "./Banner";
-import MixImage from "./CarouselProduct/MixIMage";
+
 import { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
@@ -39,7 +39,7 @@ const banners = [
 
 const items = [
   {
-    id: 1,
+    id: "1",
     outer_image:
       "https://rukminim2.flixcart.com/image/680/680/xif0q/backpack/v/k/u/13-three-compartment-premium-quality-with-usb-port-as-rain-cover-original-imagvq8fsk7zyavm.jpeg?q=60",
     name: "Best of Action Toys",
@@ -47,7 +47,7 @@ const items = [
     company_name: "Puma",
   },
   {
-    id: 2,
+    id: "2",
     outer_image:
       "https://rukminim2.flixcart.com/image/680/680/xif0q/watch/x/2/4/-original-imagrk9rg2zqkpg6.jpeg?q=60",
     name: "Gym Essentials",
@@ -55,7 +55,7 @@ const items = [
     comapny_name: "Adidas",
   },
   {
-    id: 3,
+    id: "3",
     outer_image:
       "https://rukminim2.flixcart.com/image/2000/2000/xif0q/shoe/s/6/p/6-tarzan-03-6-asian-black-light-grey-original-imah3vfs4rfhaypm.jpeg?q=70&crop=false",
     name: "Top Selling Stationery",
@@ -63,7 +63,7 @@ const items = [
     company_name: "Levis",
   },
   {
-    id: 4,
+    id: "4",
     outer_image:
       "https://rukminim2.flixcart.com/image/680/680/xif0q/backpack/v/k/u/13-three-compartment-premium-quality-with-usb-port-as-rain-cover-original-imagvq8fsk7zyavm.jpeg?q=60",
     name: "Best of Action Toys",
@@ -71,7 +71,7 @@ const items = [
     company_name: "Peter-England",
   },
   {
-    id: 5,
+    id: "5",
     outer_image:
       "https://rukminim2.flixcart.com/image/680/680/xif0q/watch/x/2/4/-original-imagrk9rg2zqkpg6.jpeg?q=60",
     name: "Gym Essentials",
@@ -79,7 +79,7 @@ const items = [
     company_name: "Roadster",
   },
   {
-    id: 6,
+    id: "6",
     outer_image:
       "https://rukminim2.flixcart.com/image/2000/2000/xif0q/shoe/s/6/p/6-tarzan-03-6-asian-black-light-grey-original-imah3vfs4rfhaypm.jpeg?q=70&crop=false",
     name: "Top Selling Stationery",
@@ -87,7 +87,7 @@ const items = [
     company_name: "Zudio",
   },
   {
-    id: 7,
+    id: "7",
     outer_image:
       "https://rukminim2.flixcart.com/image/680/680/xif0q/backpack/v/k/u/13-three-compartment-premium-quality-with-usb-port-as-rain-cover-original-imagvq8fsk7zyavm.jpeg?q=60",
     name: "Best of Action Toys",
@@ -95,7 +95,7 @@ const items = [
     company_name: "Nike",
   },
   {
-    id: 8,
+    id: "8",
     outer_image:
       "https://rukminim2.flixcart.com/image/680/680/xif0q/watch/x/2/4/-original-imagrk9rg2zqkpg6.jpeg?q=60",
     name: "Gym Essentials",
@@ -103,7 +103,7 @@ const items = [
     company_name: "Jordan",
   },
   {
-    id: 9,
+    id: "9",
     outer_image:
       "https://rukminim2.flixcart.com/image/2000/2000/xif0q/shoe/s/6/p/6-tarzan-03-6-asian-black-light-grey-original-imah3vfs4rfhaypm.jpeg?q=70&crop=false",
     name: "Top Selling Stationery",
@@ -119,7 +119,7 @@ const Homepage = () => {
   const { womensLoading, womensProducts } = useSelector(
     (state: RootState) => state.products
   );
-  const { kisdsLoading, kidsProducts } = useSelector(
+  const { kidsLoading, kidsProducts } = useSelector(
     (state: RootState) => state.products
   );
   const dispatch = useDispatch<AppDispatch>();
@@ -131,7 +131,7 @@ const Homepage = () => {
   }, []);
   return (
     <Fragment>
-      {mensLoading || womensLoading || kisdsLoading ? (
+      {mensLoading || womensLoading || kidsLoading ? (
         <Loading />
       ) : (
         <Container maxWidth="lg" sx={{ marginTop: 2 }}>

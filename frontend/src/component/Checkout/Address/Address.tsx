@@ -15,9 +15,23 @@ import { fetchUserAddresses } from "../../../store/addressSlice.tsx";
 import Loading from "../../Loading/Loading.tsx";
 // import { Address } from "../../interfaceTypes/interfaceTypes.tsx";
 
-export interface AddressInter {
+// export interface AddressInter {
+//   name: string;
+//   id: string | undefined;
+//   phonenumber: string;
+//   pincode: string;
+//   locality: string;
+//   com_address: string;
+//   city: string;
+//   state: string;
+//   landmark: string;
+//   alternate_phonenumber: string;
+//   address_type: string;
+//   isActiveAddress?: boolean;
+// }
+interface Address {
+  id?: string; // Optional in API, but you'll handle this in UI
   name: string;
-  id: string;
   phonenumber: string;
   pincode: string;
   locality: string;
@@ -26,25 +40,23 @@ export interface AddressInter {
   state: string;
   landmark: string;
   alternate_phonenumber: string;
-  address_type: string;
-  isActiveAddress: boolean;
+  address_type: "HOME" | "WORK"; // Enforce correct types
+  isActiveAddress?: boolean; // Optional from API
 }
 
 const Address: React.FC<{
   onContinue: () => void;
-  onSelectAddress: (address: AddressInter) => void;
+  onSelectAddress: (address: Address) => void;
 }> = ({ onContinue, onSelectAddress }) => {
   const { loading, addresses: data } = useSelector(
     (state: RootState) => state.address
   );
   const dispatch = useDispatch<AppDispatch>();
-  const [addresses, setAddresses] = useState<AddressInter[]>([]);
+  const [addresses, setAddresses] = useState<Address[]>([]);
   const [selectedAddress, setSelectedAddress] = useState<string>("");
   const [showAll, setShowAll] = useState(false);
   const [isAddingNew, setIsAddingNew] = useState(false);
-  const [editingAddress, setEditingAddress] = useState<AddressInter | null>(
-    null
-  );
+  const [editingAddress, setEditingAddress] = useState<Address | null>(null);
   // addresses[0];
   const [toggle, setToggle] = useState<boolean>(false);
 
@@ -56,14 +68,14 @@ const Address: React.FC<{
   useEffect(() => {
     setAddresses(data);
     data.map((item) =>
-      item.isActiveAddress ? setSelectedAddress(item.id) : ""
+      item.isActiveAddress ? setSelectedAddress(item.id || "") : ""
     );
   }, [loading]);
 
   const handleSelect = (id: string) => {
     const newSelectedAddress = addresses.find((addr) => addr.id === id);
     if (newSelectedAddress) {
-      setSelectedAddress(newSelectedAddress.id);
+      setSelectedAddress(newSelectedAddress?.id || "");
       onSelectAddress(newSelectedAddress);
     } else {
       setSelectedAddress(id);
@@ -71,9 +83,9 @@ const Address: React.FC<{
     }
   };
 
-  const handleAddAddress = (newAddress: AddressInter) => {
+  const handleAddAddress = (newAddress: Address) => {
     setAddresses([newAddress, ...addresses]);
-    setSelectedAddress(newAddress.id);
+    setSelectedAddress(newAddress?.id || "");
     setIsAddingNew(false);
   };
 

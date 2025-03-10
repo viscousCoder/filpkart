@@ -66,7 +66,7 @@ const CategoryHeader: React.FC = () => {
   const navigate = useNavigate();
 
   const handleHover = (
-    event: React.MouseEvent<HTMLElement>,
+    _: React.MouseEvent<HTMLElement>,
     categoryName: string
   ) => {
     // setAnchorEl(event.currentTarget);

@@ -12,17 +12,27 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useNavigate } from "react-router-dom";
 
+// interface Item {
+//   img: string;
+//   title: string;
+//   offer: string;
+//   company?: string;
+// }
 interface Item {
-  img: string;
-  title: string;
-  offer: string;
-  company?: string;
+  id?: string | undefined;
+  img?: string;
+  title?: string;
+  offer?: string;
+  company_name?: string;
+  outer_image: string;
+  name: string;
+  price: number | string;
 }
 
 interface Props {
   title: string;
   items: Item[];
-  isCompany: Boolean;
+  isCompany?: boolean;
 }
 
 const CarouselComponent: React.FC<Props> = ({
@@ -47,7 +57,13 @@ const CarouselComponent: React.FC<Props> = ({
     afterChange: (index: number) => setCurrentSlide(index),
   };
 
+  // const handleClick = (item: Item) => {
+  //   isCompany
+  //     ? navigate(`/top-product/${item.company_name}`)
+  //     : navigate(`/product/${item.id}`);
+  // };
   const handleClick = (item: Item) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     isCompany
       ? navigate(`/top-product/${item.company_name}`)
       : navigate(`/product/${item.id}`);
@@ -107,7 +123,7 @@ const CarouselComponent: React.FC<Props> = ({
             <Typography variant="caption" fontWeight="bold">
               {item?.price}
             </Typography>
-            {item.company && (
+            {item.company_name && (
               <Typography variant="body1" fontWeight="bold">
                 {item?.company_name}
               </Typography>

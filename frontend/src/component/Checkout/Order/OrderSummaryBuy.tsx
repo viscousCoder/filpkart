@@ -52,15 +52,15 @@ const seller = [
 const OrderSummaryBuy: React.FC<Props> = ({ cart, setCart, onContinue }) => {
   const dispatch = useDispatch<AppDispatch>();
   const { orders } = useSelector((state: RootState) => state.orders);
-  const handleQuantityChange = (id: number, delta: number) => {
-    const updatedCart = cart.map((item) =>
-      item.id === id
-        ? { ...item, quantity: Math.max(1, item.quantity + delta) }
-        : item
-    );
-    console.log(updatedCart);
-    setCart(updatedCart);
-  };
+  // const handleQuantityChange = (id: number, delta: number) => {
+  //   const updatedCart = cart.map((item) =>
+  //     item.id === id
+  //       ? { ...item, quantity: Math.max(1, item.quantity + delta) }
+  //       : item
+  //   );
+  //   console.log(updatedCart);
+  //   setCart(updatedCart);
+  // };
   console.log(orders, "Thsi is irder");
   const handleIncrement = (id: string) => {
     dispatch(incrementQuantity(id));
@@ -69,8 +69,13 @@ const OrderSummaryBuy: React.FC<Props> = ({ cart, setCart, onContinue }) => {
     dispatch(decrementQuantity(id));
   };
 
+  // const handleRemoveItem = (id: string) => {
+  //   setCart(cart.filter((item) => item.id !== id));
+  //   dispatch(removeItem(id));
+  // };
+  // Ensure the item id is a string by converting it properly
   const handleRemoveItem = (id: string) => {
-    setCart(cart.filter((item) => item.id !== id));
+    setCart(cart.filter((item) => item.id.toString() !== id));
     dispatch(removeItem(id));
   };
 
@@ -84,7 +89,7 @@ const OrderSummaryBuy: React.FC<Props> = ({ cart, setCart, onContinue }) => {
     "Sunday",
   ];
 
-  function discount(originalPrice, discountPercentage) {
+  function discount(originalPrice: number, discountPercentage: number) {
     return (originalPrice - (originalPrice * discountPercentage) / 100).toFixed(
       0
     );
@@ -110,7 +115,11 @@ const OrderSummaryBuy: React.FC<Props> = ({ cart, setCart, onContinue }) => {
               <CardMedia
                 component="img"
                 sx={{ width: "100%", borderRadius: 2 }}
-                image={item?.product?.outer_image || item?.outer_image}
+                image={
+                  item?.product?.outer_image ||
+                  item?.outer_image ||
+                  "default-image.jpg"
+                }
                 alt={item.name}
               />
             </Box>
@@ -146,15 +155,19 @@ const OrderSummaryBuy: React.FC<Props> = ({ cart, setCart, onContinue }) => {
               <Typography variant="body2">
                 <s>₹{item?.product?.price}</s>{" "}
                 <span style={{ color: "green" }}>
-                  ₹{discount(item?.product?.price, item?.product?.discount)} (
-                  {item?.product?.discount}% Off)
+                  ₹
+                  {discount(
+                    Number(item?.product?.price),
+                    Number(item?.product?.discount)
+                  )}{" "}
+                  ({item?.product?.discount}% Off)
                 </span>
               </Typography>
 
               <Box display="flex" alignItems="center" mt={1}>
                 <IconButton
-                  // onClick={() => handleQuantityChange(item.id, -1)}
-                  onClick={() => handleDecrement(item.id)}
+                  // onClick={() => handleDecrement(item.id)}
+                  onClick={() => handleDecrement(item.id?.toString() || "")}
                   sx={{
                     border: "1px solid #aaa",
                     borderRadius: "50%",
@@ -166,7 +179,8 @@ const OrderSummaryBuy: React.FC<Props> = ({ cart, setCart, onContinue }) => {
                 <Typography mx={1}>{item.quantity}</Typography>
                 <IconButton
                   // onClick={() => handleQuantityChange(item.id, 1)}
-                  onClick={() => handleIncrement(item.id)}
+                  // onClick={() => handleIncrement(item.id)}
+                  onClick={() => handleIncrement(item.id?.toString() || "")}
                   sx={{
                     border: "1px solid #aaa",
                     borderRadius: "50%",
@@ -185,7 +199,7 @@ const OrderSummaryBuy: React.FC<Props> = ({ cart, setCart, onContinue }) => {
                   variant="outlined"
                   size="small"
                   color="error"
-                  onClick={() => handleRemoveItem(item.id)}
+                  onClick={() => handleRemoveItem(item.id?.toString() || "")}
                 >
                   Remove
                 </Button>

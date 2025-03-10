@@ -214,7 +214,7 @@ const ProductDetails: React.FC<ProductDet> = ({ product }) => {
         <ToggleButtonGroup
           value={selectedColor}
           exclusive
-          onChange={(e, newColor) => setSelectedColor(newColor)}
+          onChange={(_, newColor) => setSelectedColor(newColor)}
         >
           {colors.map((color, index) => (
             <ToggleButton

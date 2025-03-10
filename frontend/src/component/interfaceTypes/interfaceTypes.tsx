@@ -1,9 +1,10 @@
 export interface Product {
   id?: string;
   name: string;
-  subtitle: string[];
+  // subtitle: string[];
+  subtitles: [{ id: string; text: string }];
   outer_image: string;
-  all_images: { url: string }[];
+  all_images?: { url: string }[];
   price: number;
   rating: number;
   overview: string;
@@ -40,19 +41,34 @@ export interface AuthState {
   error: string | null;
 }
 
+// export interface Address {
+//   name: string;
+//   id: string;
+//   phonenumber: string;
+//   pincode: string;
+//   locality: string;
+//   com_address: string;
+//   city: string;
+//   state: string;
+//   landmark: string;
+//   alternate_phonenumber: string;
+//   address_type: string;
+//   isActiveAddress: boolean;
+// }
+// src/component/interfaceTypes/types.ts
 export interface Address {
+  id?: string;
+  address_type: "HOME" | "WORK"; // Only HOME or WORK are allowed
   name: string;
-  id: string;
   phonenumber: string;
+  com_address: string;
   pincode: string;
   locality: string;
-  com_address: string;
   city: string;
   state: string;
   landmark: string;
   alternate_phonenumber: string;
-  address_type: string;
-  isActiveAddress: boolean;
+  isActiveAddress?: boolean;
 }
 
 export interface Order {

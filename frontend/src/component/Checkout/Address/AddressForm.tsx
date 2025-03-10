@@ -13,9 +13,11 @@ import {
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../store/store";
 import { addAddress, updateAddress } from "../../../store/addressSlice";
+import { SelectChangeEvent } from "@mui/material";
 
+// Address interface from the API
 interface Address {
-  id?: string;
+  id?: string; // Optional in API, but you'll handle this in UI
   name: string;
   phonenumber: string;
   pincode: string;
@@ -25,8 +27,8 @@ interface Address {
   state: string;
   landmark: string;
   alternate_phonenumber: string;
-  address_type: string;
-  isActiveAddress?: boolean;
+  address_type: "HOME" | "WORK"; // Enforce correct types
+  isActiveAddress?: boolean; // Optional from API
 }
 
 interface Props {
@@ -50,7 +52,7 @@ const AddressForm: React.FC<Props> = ({ initialData, onSave, onCancel }) => {
     state: initialData?.state || "",
     landmark: initialData?.landmark || "",
     alternate_phonenumber: initialData?.alternate_phonenumber || "",
-    address_type: initialData?.address_type || "Home",
+    address_type: initialData?.address_type || "HOME",
   });
 
   // Update form data if editing a different address
@@ -60,8 +62,13 @@ const AddressForm: React.FC<Props> = ({ initialData, onSave, onCancel }) => {
     }
   }, [initialData]);
 
+  // const handleChange = (
+  //   e: React.ChangeEvent<HTMLInputElement | { name?: string; value: unknown }>
+  // ) => {
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | { name?: string; value: unknown }>
+    e:
+      | React.ChangeEvent<HTMLInputElement | { name?: string; value: unknown }>
+      | SelectChangeEvent<string>
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name as string]: value }));

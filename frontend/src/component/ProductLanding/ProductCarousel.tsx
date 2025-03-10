@@ -75,6 +75,9 @@ const ProductCarousel: React.FC<Product> = ({ product }) => {
       product,
       quantity: 1,
       status: "ORDERED",
+      freeDelivery: 0,
+      name: undefined,
+      outer_image: "",
     };
     console.log([order], "hello india");
     await dispatch(addOrderCart([order]));

@@ -11,7 +11,7 @@ import {
   Chip,
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import AddressForm from "./AddressForm.tsx";
+import AddressForm, { Address as CustomAddress } from "./AddressForm.tsx";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../store/store.tsx";
 import {
@@ -19,16 +19,15 @@ import {
   fetchUserAddresses,
 } from "../../../store/addressSlice.tsx";
 import Loading from "../../Loading/Loading.tsx";
-import { AddressInter } from "../../Checkout/Address/Address.tsx";
 
 const Address: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { loading, addresses: data } = useSelector(
     (state: RootState) => state.address
   );
-  const [addresses, setAddresses] = useState<AddressInter[]>([]);
+  const [addresses, setAddresses] = useState<CustomAddress[]>([]);
   const [showForm, setShowForm] = useState(false);
-  const [editingAddress, setEditingAddress] = useState<AddressInter | null>(
+  const [editingAddress, setEditingAddress] = useState<CustomAddress | null>(
     null
   );
   const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
@@ -85,7 +84,7 @@ const Address: React.FC = () => {
   };
 
   // Handle Save (Add or Edit)
-  const handleSave = (newAddress: AddressInter) => {
+  const handleSave = (newAddress: CustomAddress) => {
     if (newAddress.id) {
       // Edit Existing Address
       setAddresses((prev) =>
@@ -141,7 +140,7 @@ const Address: React.FC = () => {
                 {/* Address Type Chip */}
                 <Chip
                   label={addr.address_type}
-                  color={addr.address_type === "Home" ? "primary" : "secondary"}
+                  color={addr.address_type === "HOME" ? "primary" : "secondary"}
                   size="small"
                 />
 
@@ -161,7 +160,7 @@ const Address: React.FC = () => {
                   aria-label="more"
                   aria-controls="menu"
                   aria-haspopup="true"
-                  onClick={(event) => handleMenuOpen(event, addr.id)}
+                  onClick={(event) => handleMenuOpen(event, addr.id || "")}
                   sx={{ position: "absolute", top: 16, right: 16 }}
                 >
                   <MoreVertIcon />

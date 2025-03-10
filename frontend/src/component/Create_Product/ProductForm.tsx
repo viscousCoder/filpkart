@@ -357,7 +357,7 @@ const ProductForm = () => {
               //     setSelectedCategory(newValue || "");
               //     setSelectedSubcategory("");
               //   }}
-              onChange={(event, newValue) => {
+              onChange={(_, newValue) => {
                 setSelectedCategory(newValue || "");
                 setSelectedSubcategory("");
                 setProductDetails((prevState) => ({
@@ -384,7 +384,7 @@ const ProductForm = () => {
               //   onChange={(event, newValue) =>
               //     setSelectedSubcategory(newValue || "")
               //   }
-              onChange={(event, newValue) => {
+              onChange={(_, newValue) => {
                 setSelectedSubcategory(newValue || "");
                 setProductDetails((prevState) => ({
                   ...prevState,
@@ -413,7 +413,7 @@ const ProductForm = () => {
                   : []
               }
               value={productDetails.company_name}
-              onChange={(event, newValue) => {
+              onChange={(_, newValue) => {
                 setProductDetails((prevState) => ({
                   ...prevState,
                   company_name: newValue || "",

@@ -1,21 +1,61 @@
 import React from "react";
 import { Box, Card, CardContent, Divider, Typography } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
-import { Product } from "../../interfaceTypes/interfaceTypes";
+// import { Product } from "../../interfaceTypes/interfaceTypes";
 
-interface CartItem {
+// interface CartItem {
+//   product: Product;
+//   quantity: number;
+//   id: string;
+//   status: string;
+// }
+
+// interface Props {
+//   cart: CartItem[];
+// }
+
+// interfaceTypes.ts
+export interface Subtitle {
+  __typename: string;
+  id: string;
+  text: string;
+}
+
+export interface ProductImage {
+  __typename: string;
+  id: string;
+  image: string;
+}
+
+export interface Product {
+  __typename: string;
+  id: string;
+  name: string;
+  subtitles: Subtitle[];
+  outer_image: string;
+  images: ProductImage[];
+  price: number;
+  rating: number;
+  overview: string;
+  company_name: string;
+  category: string;
+  subcategory: string;
+  quantity: number;
+  discount: number;
+}
+
+export interface CartItem {
   product: Product;
   quantity: number;
   id: string;
   status: string;
 }
-
 interface Props {
   cart: CartItem[];
 }
 
 const PriceDetails: React.FC<Props> = ({ cart }) => {
-  console.log("card insde the buy", cart);
+  console.log("card insde the buy ", cart);
   function discount(originalPrice: number, discountPercentage: number) {
     return Number(
       (originalPrice - (originalPrice * discountPercentage) / 100).toFixed(0)

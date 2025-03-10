@@ -13,14 +13,14 @@ import { PayloadAction } from "@reduxjs/toolkit";
 
 // Define Subtitle interface
 interface Subtitle {
-  __typename: "Subtitle";
+  __typename?: string;
   id: string;
   text: string;
 }
 
 // Define ProductImage interface
 interface ProductImage {
-  __typename: "ProductImage";
+  __typename?: string;
   id: string;
   image: string;
 }
@@ -50,11 +50,14 @@ interface ProductDetails {
 // }
 
 export interface Order {
+  freeDelivery: number;
+  name: string | undefined;
+  outer_image: string;
   id?: string;
   userId?: string;
   quantity: number;
   status: "CART" | "ORDERED" | "WISHLIST";
-  product: ProductDetails;
+  product?: ProductDetails;
 }
 
 // Define OrderState interface

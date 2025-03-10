@@ -18,9 +18,9 @@ import {
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import StarIcon from "@mui/icons-material/Star";
-import Address, { AddressInter } from "./Address/Address";
+import Address from "./Address/Address";
 import OrderSummary from "./Order/OrderSummary";
-import PriceDetails from "./Price/PriceDetails";
+import PriceDetails, { CartItem } from "./Price/PriceDetails";
 import Payment from "./Payment/Payment";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
@@ -35,9 +35,23 @@ const loginInitialValues: LoginState = {
   password: "",
 };
 
+interface AddressInter {
+  id?: string;
+  name: string;
+  phonenumber: string;
+  pincode: string;
+  locality: string;
+  com_address: string;
+  city: string;
+  state: string;
+  landmark: string;
+  alternate_phonenumber: string;
+  address_type: "HOME" | "WORK"; // Enforce correct types
+  isActiveAddress?: boolean; // Optional from API
+}
 const Checkout: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { orders: cart } = useSelector((state: RootState) => state.orders);
+  const { orders: cart = [] } = useSelector((state: RootState) => state.orders);
   console.log("Aman", cart);
   const { user } = useSelector((state: RootState) => state.user);
 
@@ -105,8 +119,9 @@ const Checkout: React.FC = () => {
       subtitle: `${cart.length} Items`,
       content: (
         <OrderSummary
-          cart={cart}
+          // cart={cart}
           onContinue={() => handleContinueCheckout(2)}
+          cart={[]}
         />
       ),
       // direct === "true" ? (
@@ -309,7 +324,7 @@ const Checkout: React.FC = () => {
 
         <Grid item xs={12} md={4}>
           {isLoggedIn ? (
-            <PriceDetails cart={cart} />
+            <PriceDetails cart={cart as unknown as CartItem[]} />
           ) : (
             <Box sx={{ p: 2, color: "#7a7a7a" }}>
               <Typography fontWeight="bold">

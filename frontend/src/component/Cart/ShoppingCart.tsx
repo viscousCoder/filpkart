@@ -59,14 +59,15 @@ const ShoppingCart: React.FC<PropCart> = ({ carts, setToggle }) => {
   const totalPrice = carts.reduce(
     (acc, item) =>
       acc +
-      discount(item.product?.price, item.product?.discount) * item.quantity,
+      discount(Number(item.product?.price), Number(item.product?.discount)) *
+        item.quantity,
     0
   );
   const totalDiscount = carts.reduce(
     (acc, item) =>
       acc +
-      (item.product?.price -
-        discount(item.product?.price, item.product?.discount)) *
+      (Number(item.product?.price) -
+        discount(Number(item.product?.price), Number(item.product?.discount))) *
         item.quantity,
     0
   );
@@ -122,7 +123,9 @@ const ShoppingCart: React.FC<PropCart> = ({ carts, setToggle }) => {
                         <Box>
                           <Typography variant="body2" color="text.secondary">
                             Delivery by Tommorow |{" "}
-                            {item.product?.price > 1000 ? "Free" : "₹40"}
+                            {Number(item.product?.price) > 1000
+                              ? "Free"
+                              : "₹40"}
                           </Typography>
                         </Box>
                       </Box>
@@ -149,8 +152,8 @@ const ShoppingCart: React.FC<PropCart> = ({ carts, setToggle }) => {
                         <span style={{ color: "green" }}>
                           ₹
                           {discount(
-                            item?.product?.price,
-                            item.product?.discount
+                            Number(item?.product?.price),
+                            Number(item.product?.discount)
                           )}{" "}
                           ({item.product?.discount}% Off)
                         </span>

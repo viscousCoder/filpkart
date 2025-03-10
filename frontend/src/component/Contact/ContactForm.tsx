@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Grid, Card, Typography, Box, TextField, Button } from "@mui/material";
 import { SEND_MESSAGE } from "../../graphql/Mutation";
 import { useMutation } from "@apollo/client";
@@ -18,7 +18,7 @@ const ContactForm = () => {
     message: "",
   });
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -28,7 +28,7 @@ const ContactForm = () => {
 
   const validate = () => {
     let isValid = true;
-    let errorMessages = {
+    const errorMessages = {
       name: "",
       email: "",
       message: "",
@@ -57,7 +57,7 @@ const ContactForm = () => {
     return isValid;
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (validate()) {
       const response = await sendMessage({

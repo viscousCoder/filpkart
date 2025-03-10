@@ -32,7 +32,7 @@ const Payment: React.FC<Props> = ({ onContinue }) => {
   // console.log(orders, "Aman order");
   const handleContinue = () => {
     if (direct === "false") {
-      const orderId = orders?.map((item) => item.id);
+      const orderId = orders?.map((item) => item?.id || "");
       dispatch(updateOrderStatus({ orderIds: orderId, status: "ORDERED" }));
     } else {
       const userId = localStorage.getItem("id");
@@ -40,7 +40,7 @@ const Payment: React.FC<Props> = ({ onContinue }) => {
         dispatch(
           addOrder({
             userId: userId,
-            productId: orders[0]?.product?.id,
+            productId: orders[0]?.product?.id || "",
             quantity: 1,
             status: "ORDERED",
           })

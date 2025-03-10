@@ -35,14 +35,15 @@ const OrderSuccessComp: React.FC = () => {
   const totalPrice = carts.reduce(
     (acc, item) =>
       acc +
-      discount(item.product?.price, item.product?.discount) * item.quantity,
+      discount(Number(item.product?.price), Number(item.product?.discount)) *
+        item.quantity,
     0
   );
   const totalDiscount = carts.reduce(
     (acc, item) =>
       acc +
-      (item.product?.price -
-        discount(item.product?.price, item.product?.discount)) *
+      (Number(item.product?.price) -
+        discount(Number(item.product?.price), Number(item.product?.discount))) *
         item.quantity,
     0
   );
@@ -50,6 +51,7 @@ const OrderSuccessComp: React.FC = () => {
   const handleOrdered = async () => {
     navigate("/");
   };
+  console.log(carts, "successdata");
   return (
     <Fragment>
       <Box p={3}>
@@ -97,7 +99,9 @@ const OrderSuccessComp: React.FC = () => {
                         <Box>
                           <Typography variant="body2" color="text.secondary">
                             Delivery by Tommorow |{" "}
-                            {item.product?.price > 1000 ? "Free" : "₹40"}
+                            {Number(item.product?.price) > 1000
+                              ? "Free"
+                              : "₹40"}
                           </Typography>
                         </Box>
                       </Box>
@@ -124,8 +128,8 @@ const OrderSuccessComp: React.FC = () => {
                         <span style={{ color: "green" }}>
                           ₹
                           {discount(
-                            item?.product?.price,
-                            item.product?.discount
+                            Number(item?.product?.price),
+                            Number(item.product?.discount)
                           )}{" "}
                           ({item.product?.discount}% Off)
                         </span>
@@ -133,7 +137,7 @@ const OrderSuccessComp: React.FC = () => {
 
                       <Box display="flex" alignItems="center" mt={1}>
                         <IconButton
-                          disabled={"true"}
+                          disabled={true}
                           sx={{
                             border: "1px solid #aaa",
                             borderRadius: "50%",
@@ -144,7 +148,7 @@ const OrderSuccessComp: React.FC = () => {
                         </IconButton>
                         <Typography mx={1}>{item?.quantity}</Typography>
                         <IconButton
-                          disabled={"true"}
+                          disabled={true}
                           sx={{
                             border: "1px solid #aaa",
                             borderRadius: "50%",

@@ -1,12 +1,5 @@
 import React, { Fragment } from "react";
-import {
-  Container,
-  Grid,
-  Card,
-  Typography,
-  Box,
-  IconButton,
-} from "@mui/material";
+import { Grid, Card, Typography, Box, IconButton } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
@@ -14,7 +7,6 @@ import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import PeopleIcon from "@mui/icons-material/People";
 import TwitterIcon from "@mui/icons-material/Twitter";
-import InstagramIcon from "@mui/icons-material/Instagram";
 
 const DownContact: React.FC = () => {
   return (

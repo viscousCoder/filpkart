@@ -98,15 +98,26 @@ const ImageBackdrop = styled("span")(({ theme }) => ({
   transition: theme.transitions.create("opacity"),
 }));
 
-const ImageOverlayText = styled(Typography)(({ theme }) => ({
-  position: "absolute",
-  bottom: 10,
-  left: "50%",
-  transform: "translateX(-50%)",
-  color: theme.palette.common.white,
-  fontSize: "1.5rem",
-  fontWeight: "bold",
-}));
+// const ImageOverlayText = styled("span")(({ theme }) => ({
+//   position: "absolute",
+//   bottom: 10,
+//   left: "50%",
+//   transform: "translateX(-50%)",
+//   color: theme.palette.common.white,
+//   fontSize: "1.5rem",
+//   fontWeight: "bold",
+// }));
+const ImageOverlayText = styled(Typography)<{ component: string }>(
+  ({ theme }) => ({
+    position: "absolute",
+    bottom: 10,
+    left: "50%",
+    transform: "translateX(-50%)",
+    color: theme.palette.common.white,
+    fontSize: "1.5rem",
+    fontWeight: "bold",
+  })
+);
 
 export default function MixImage() {
   return (

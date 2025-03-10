@@ -14,7 +14,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../store/store";
 import { addAddress, updateAddress } from "../../../store/addressSlice";
 
-interface Address {
+export interface Address {
   id?: string;
   address_type: "HOME" | "WORK";
   name: string;
@@ -26,6 +26,7 @@ interface Address {
   state: string;
   landmark: string;
   alternate_phonenumber: string;
+  isActiveAddress?: boolean;
 }
 
 interface AddressFormProps {

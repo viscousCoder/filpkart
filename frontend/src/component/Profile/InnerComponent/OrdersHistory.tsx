@@ -163,7 +163,7 @@ const OrdersHistory: React.FC = () => {
                         {order?.product?.name}
                       </Typography>
                       <Typography component={"span"} sx={{ color: "#888" }}>
-                        {order?.product?.overview.length > 100
+                        {Number(order?.product?.overview.length) > 100
                           ? order?.product?.overview.slice(0, 90) + "..."
                           : order?.product?.overview}
                       </Typography>
@@ -175,8 +175,8 @@ const OrdersHistory: React.FC = () => {
                         <span style={{ color: "success" }}>
                           ₹
                           {discount(
-                            order.product?.price,
-                            order.product?.discount
+                            Number(order.product?.price),
+                            Number(order.product?.discount)
                           )}{" "}
                           ({order.product?.discount}% Off)
                         </span>

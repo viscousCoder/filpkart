@@ -164,6 +164,7 @@ interface State {
   kidsLoading: boolean;
   kidsProducts: Product[];
   kidsError: string;
+  id?: string;
 }
 
 // Initial state
