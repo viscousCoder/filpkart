@@ -1,4 +1,3 @@
-import React from "react";
 import OrderSuccessComp from "../../component/OrderSuccessComp/OrderSuccessComp.tsx";
 
 const OrderSuccess = () => {
