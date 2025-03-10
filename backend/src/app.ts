@@ -21,7 +21,7 @@ interface user {
   role: string;
 }
 // Apply the upload middleware
-const PORT = 1212;
+const PORT = 1211;
 
 async function getStarted() {
   const app = express();

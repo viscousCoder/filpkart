@@ -113,7 +113,7 @@ export const createProduct = createAsyncThunk(
       // });
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "http://localhost:1212/admin/create-product",
+        "http://localhost:1211/admin/create-product",
         formData,
         {
           headers: {

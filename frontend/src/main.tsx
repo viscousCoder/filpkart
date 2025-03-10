@@ -15,7 +15,7 @@ import createUploadLink from "apollo-upload-client/createUploadLink.mjs";
 // });
 
 const link = createUploadLink({
-  uri: "http://localhost:1212/graphql",
+  uri: "http://localhost:1211/graphql",
   credentials: "include",
 });
 export const client = new ApolloClient({
