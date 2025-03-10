@@ -52,7 +52,7 @@ const Header: React.FC = () => {
 
   // const token = localStorage.getItem("token");
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const [account, setAccount] = useState(""); // Store logged-in user
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
