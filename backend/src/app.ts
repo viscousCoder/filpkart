@@ -11,6 +11,7 @@ import { graphQLSchema } from "./schema/graphqlschema";
 import { graphQLResolver } from "./resolver/graphQLResolver";
 import adminRoutes from "./routes/admin";
 import { authorization, isAdmin } from "./middleware/authorization";
+// import { importCSVData } from "./ProductData";
 
 interface user {
   id: string;
@@ -59,6 +60,7 @@ async function getStarted() {
      * starting the server
      */
     await server.start();
+    // importCSVData();
 
     /**
      * establishing connection with database
